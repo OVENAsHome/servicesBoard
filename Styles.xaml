@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Brand -->
+    <Color x:Key="BrandOrange">#FF8A00</Color>
+    <Color x:Key="BrandOrangeSoft">#FFF3E0</Color>
+    <Color x:Key="Ink">#1F1F1F</Color>
+    <Color x:Key="Muted">#7A7A7A</Color>
+    <Color x:Key="CardBg">#FFFFFF</Color>
+    <Color x:Key="PageBg">#FFF7EF</Color>
+    <Color x:Key="BorderSoft">#F1E2D2</Color>
+
+    <!-- Typography -->
+    <Style x:Key="H1" TargetType="Label">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+    </Style>
+
+    <Style x:Key="H2" TargetType="Label">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+    </Style>
+
+    <Style x:Key="MutedText" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource Muted}"/>
+    </Style>
+
+    <Style x:Key="BodyText" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+    </Style>
+
+    <!-- Buttons -->
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BrandOrange}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="HeightRequest" Value="48"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="Padding" Value="16,0"/>
+    </Style>
+
+    <Style x:Key="GhostButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{StaticResource BorderSoft}"/>
+        <Setter Property="Padding" Value="16,0"/>
+    </Style>
+
+    <!-- Inputs -->
+    <Style x:Key="Input" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource Muted}"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="Margin" Value="0,0,0,8"/>
+    </Style>
+
+    <Style x:Key="PickerInput" TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Ink}"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="Margin" Value="0,0,0,8"/>
+    </Style>
+
+    <!-- Card container -->
+    <Style x:Key="Card" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBg}"/>
+        <Setter Property="Stroke" Value="{StaticResource BorderSoft}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="18"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Radius="12" Opacity="0.12" Offset="0,6"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
