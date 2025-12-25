@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Регистрация">
+
+    <Grid Padding="16" RowDefinitions="Auto,*" RowSpacing="12">
+
+        <Label Text="Регистрация пользователя" Style="{StaticResource H1}" />
+
+        <ScrollView Grid.Row="1">
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Имя" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="NameEntry" Style="{StaticResource Input}" />
+
+                    <Label Text="Телефон" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="PhoneEntry" Style="{StaticResource Input}" />
+
+                    <Label Text="Email (логин)" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Style="{StaticResource Input}" />
+
+                    <Label Text="Пароль" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Style="{StaticResource Input}" />
+
+                    <Label Text="Роль" Style="{StaticResource MutedText}" />
+                    <Picker x:Name="RolePicker" Style="{StaticResource PickerInput}">
+                        <Picker.Items>
+                            <x:String>Заказчик</x:String>
+                            <x:String>Исполнитель</x:String>
+                            <x:String>Администратор</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Label Text="Описание (для исполнителей обязательно)" Style="{StaticResource MutedText}" />
+                    <Editor x:Name="DescriptionEditor"
+                            AutoSize="TextChanges"
+                            HeightRequest="90"
+                            BackgroundColor="White"
+                            TextColor="{StaticResource Ink}" />
+
+                    <Label Text="Время работы (для исполнителя обязательно)" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="WorkingHoursEntry" Placeholder="Напр. 09:00–18:00, Пн–Пт" Style="{StaticResource Input}"/>
+
+                    <Label Text="Код администратора (если регистрируете админа)" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="AdminCodeEntry"
+                           Placeholder="Введите 2005 для администратора"
+                           Keyboard="Numeric"
+                           Style="{StaticResource Input}" />
+
+                    <Button Text="Зарегистрироваться"
+                            Style="{StaticResource PrimaryButton}"
+                            Clicked="OnRegisterClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
+    </Grid>
+</ContentPage>

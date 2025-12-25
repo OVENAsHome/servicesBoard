@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.AdsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Доска услуг"
+    BackgroundColor="{StaticResource PageBg}">
+
+    <!-- Toolbar остаётся как в твоей версии -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Добавить" Clicked="OnAddClicked" />
+        <ToolbarItem Text="Мои" Order="Secondary" Clicked="OnMyAdsClicked" />
+        <ToolbarItem Text="Исполнители" Order="Secondary" Clicked="OnPerformersClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="12"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="10">
+
+        <!-- Верх фикс -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+            <Label Text="Электронная доска услуг"
+                   Style="{StaticResource H1}"
+                   VerticalOptions="Center" />
+
+            <Button x:Name="LoginButton"
+                    Grid.Column="1"
+                    Text="Войти"
+                    Style="{StaticResource GhostButton}"
+                    Clicked="OnLoginClicked" />
+
+            <Button Grid.Column="2"
+                    Text="Регистрация"
+                    Style="{StaticResource PrimaryButton}"
+                    Clicked="OnRegisterClicked" />
+        </Grid>
+
+        <!-- Фильтры (фикс под заголовком) -->
+        <Border Grid.Row="1" Style="{StaticResource Card}">
+            <VerticalStackLayout Spacing="8">
+
+                <Label Text="Фильтры" Style="{StaticResource H2}"/>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="Категория" Style="{StaticResource MutedText}" />
+                        <Border BackgroundColor="White"
+                Stroke="{StaticResource BorderSoft}"
+                StrokeThickness="1"
+                Padding="8,0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14"/>
+                            </Border.StrokeShape>
+
+                            <Picker x:Name="CategoryFilterPicker"
+                    Title="Выберите"
+                    TextColor="#1F1F1F"
+                    TitleColor="#7A7A7A"
+                    BackgroundColor="White"
+                    HeightRequest="44"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label Text="Район" Style="{StaticResource MutedText}" />
+                        <Border BackgroundColor="White"
+                Stroke="{StaticResource BorderSoft}"
+                StrokeThickness="1"
+                Padding="8,0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14"/>
+                            </Border.StrokeShape>
+
+                            <Picker x:Name="AreaFilterPicker"
+                    Title="Выберите"
+                    TextColor="#1F1F1F"
+                    TitleColor="#7A7A7A"
+                    BackgroundColor="White"
+                    HeightRequest="44"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                </Grid>
+
+
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="Цена от" Style="{StaticResource MutedText}"/>
+                        <Entry x:Name="MinPriceEntry" Keyboard="Numeric" Style="{StaticResource Input}" HeightRequest="44"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label Text="Цена до" Style="{StaticResource MutedText}"/>
+                        <Entry x:Name="MaxPriceEntry" Keyboard="Numeric" Style="{StaticResource Input}" HeightRequest="44"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2" Spacing="4">
+                        <Label Text="Рейтинг от" Style="{StaticResource MutedText}"/>
+                        <Entry x:Name="MinRatingEntry" Keyboard="Numeric" Style="{StaticResource Input}" HeightRequest="44"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+
+                <Button Text="Фильтр"
+                        Style="{StaticResource PrimaryButton}"
+                        Clicked="OnFilterClicked"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Список (скроллится только он) -->
+        <CollectionView Grid.Row="2"
+                        x:Name="AdsCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnAdSelected">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,10">
+                        <Grid ColumnDefinitions="80,*" ColumnSpacing="12">
+
+                            <!-- Фикс место под фото -->
+                            <Border BackgroundColor="{StaticResource BrandOrangeSoft}"
+                                    Stroke="{StaticResource BorderSoft}"
+                                    StrokeThickness="1"
+                                    HeightRequest="80"
+                                    WidthRequest="80">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="16"/>
+                                </Border.StrokeShape>
+                                <Image Source="{Binding PhotoPath}" Aspect="AspectFill"/>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       LineBreakMode="TailTruncation"/>
+
+                                <Label Text="{Binding Category}" Style="{StaticResource MutedText}"/>
+                                <Label Text="{Binding Area, StringFormat='Район: {0}'}" Style="{StaticResource MutedText}"/>
+
+                                <Grid ColumnDefinitions="*,Auto" Margin="0,6,0,0">
+                                    <Label Text="{Binding Price, StringFormat='Цена: {0:F0} ₽'}"
+                                           FontAttributes="Bold" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding ViewsCount, StringFormat='👁 {0}'}"
+                                           Style="{StaticResource MutedText}"
+                                           HorizontalOptions="End"/>
+                                </Grid>
+
+                                <Label Text="{Binding Description}"
+                                       Style="{StaticResource BodyText}"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2"/>
+
+                                <!-- Кнопки как у тебя в старом AdsList -->
+                                <HorizontalStackLayout Spacing="8" Margin="0,8,0,0">
+                                    <Button Text="Заказать" Style="{StaticResource PrimaryButton}" Clicked="OnRequestClicked"/>
+                                    <Button Text="Редактировать" Style="{StaticResource GhostButton}" Clicked="OnEditClicked"/>
+                                    <Button Text="Удалить" Style="{StaticResource GhostButton}" Clicked="OnDeleteClicked"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

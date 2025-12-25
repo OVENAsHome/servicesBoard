@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.CreateAdPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Новое объявление">
+
+    <Grid Padding="16" RowDefinitions="Auto,*" RowSpacing="12">
+
+        <Label Text="Создание объявления" Style="{StaticResource H1}" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="12">
+
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Категория" Style="{StaticResource MutedText}"/>
+                        <Picker x:Name="CategoryPicker"
+                                Title="Выберите категорию"
+                                Style="{StaticResource PickerInput}"/>
+
+                        <Label Text="Район" Style="{StaticResource MutedText}"/>
+                        <Picker x:Name="AreaPicker"
+                                Title="Выберите район"
+                                Style="{StaticResource PickerInput}"/>
+
+                        <Label Text="Заголовок" Style="{StaticResource MutedText}"/>
+                        <Entry x:Name="TitleEntry"
+                               Placeholder="Например: Уборка квартир"
+                               Style="{StaticResource Input}"/>
+
+                        <Label Text="Описание" Style="{StaticResource MutedText}"/>
+                        <Editor x:Name="DescriptionEditor"
+                                AutoSize="TextChanges"
+                                HeightRequest="110"
+                                BackgroundColor="White"
+                                TextColor="{StaticResource Ink}"/>
+
+                        <Label Text="Цена" Style="{StaticResource MutedText}"/>
+                        <Entry x:Name="PriceEntry"
+                               Keyboard="Numeric"
+                               Placeholder="Например: 1500"
+                               Style="{StaticResource Input}"/>
+
+                        <Label Text="Фото (необязательно)" Style="{StaticResource MutedText}"/>
+
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Picker x:Name="CategoryImagePicker"
+                                    Grid.Column="0"
+                                    Title="Фото из категории"
+                                    Style="{StaticResource PickerInput}"/>
+
+                            <Button Grid.Column="1"
+                                    Text="Из галереи"
+                                    Style="{StaticResource GhostButton}"
+                                    Clicked="OnPickFromGalleryClicked"/>
+                        </Grid>
+
+                        <!-- Фикс место под превью -->
+                        <Border BackgroundColor="{StaticResource BrandOrangeSoft}"
+                                Stroke="{StaticResource BorderSoft}"
+                                StrokeThickness="1"
+                                Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="18"/>
+                            </Border.StrokeShape>
+
+                            <Grid HeightRequest="220">
+                                <Image x:Name="PreviewImage" Aspect="AspectFill"/>
+                                <Label x:Name="PreviewPlaceholder"
+                                       Text="Выберите фото"
+                                       TextColor="{StaticResource Muted}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <Button Text="Сохранить"
+                                Style="{StaticResource PrimaryButton}"
+                                Clicked="OnSaveClicked"/>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

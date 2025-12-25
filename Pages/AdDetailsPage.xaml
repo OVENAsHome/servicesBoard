@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.AdDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Объявление">
+
+    <Grid RowDefinitions="*,Auto" Padding="12" RowSpacing="10">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="12">
+
+                <Label x:Name="TitleLabel" Style="{StaticResource H1}"/>
+                <Label x:Name="MetaLabel" Style="{StaticResource MutedText}"/>
+                <Label x:Name="ViewsLabel" Style="{StaticResource MutedText}"/>
+
+                <!-- Фото / область фикс -->
+                <Border Style="{StaticResource Card}" Padding="0">
+                    <Grid>
+                        <Image x:Name="AdImage"
+                               HeightRequest="220"
+                               Aspect="AspectFill"
+                               IsVisible="False"/>
+                        <!-- Заглушка, если нет фото -->
+                        <Grid x:Name="NoPhotoBlock" HeightRequest="220" BackgroundColor="{StaticResource BrandOrangeSoft}">
+                            <Label Text="Нет фото" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{StaticResource Muted}" />
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Детали" Style="{StaticResource H2}"/>
+
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="6">
+                            <Label Text="Категория:" TextColor="{StaticResource Muted}"/>
+                            <Label x:Name="CategoryLabel" Grid.Column="1"/>
+
+                            <Label Text="Район:" Grid.Row="1" TextColor="{StaticResource Muted}"/>
+                            <Label x:Name="AreaLabel" Grid.Row="1" Grid.Column="1"/>
+
+                            <Label Text="Цена:" Grid.Row="2" TextColor="{StaticResource Muted}"/>
+                            <Label x:Name="PriceLabel" Grid.Row="2" Grid.Column="1"/>
+
+                            <Label Text="Статус:" Grid.Row="3" TextColor="{StaticResource Muted}"/>
+                            <Label x:Name="StatusLabel" Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Описание" Style="{StaticResource H2}"/>
+                        <Label x:Name="DescLabel" Style="{StaticResource BodyText}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Исполнитель" Style="{StaticResource H2}"/>
+
+                        <Label x:Name="PerformerNameLabel" FontAttributes="Bold" FontSize="16"/>
+                        <Label x:Name="PerformerDescLabel" Style="{StaticResource BodyText}"/>
+
+                        <Label x:Name="PerformerHoursLabel" Style="{StaticResource MutedText}"/>
+                        <Label x:Name="PerformerRatingLabel" Style="{StaticResource MutedText}"/>
+                        <Label x:Name="PerformerOrdersLabel" Style="{StaticResource MutedText}"/>
+                        <Label x:Name="PerformerEmailLabel" Style="{StaticResource MutedText}"/>
+                        <Label x:Name="PerformerPhoneLabel" Style="{StaticResource MutedText}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button Grid.Row="1"
+                x:Name="RequestButton"
+                Text="Заказать"
+                Style="{StaticResource PrimaryButton}"
+                Clicked="OnRequestClicked"/>
+    </Grid>
+</ContentPage>

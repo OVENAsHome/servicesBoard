@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.PerformersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Исполнители">
+
+    <Grid Padding="12" RowDefinitions="Auto,*" RowSpacing="10">
+
+        <Label Text="Список исполнителей" Style="{StaticResource H1}" />
+
+        <CollectionView Grid.Row="1"
+                        x:Name="PerformersCollectionView"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,10">
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label Text="{Binding Name}"
+                                   FontAttributes="Bold"
+                                   FontSize="16" />
+
+                            <Label Text="{Binding Description}"
+                                   Style="{StaticResource BodyText}"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="3" />
+
+                            <Label Text="{Binding WorkingHours, StringFormat='Время работы: {0}'}"
+                                   Style="{StaticResource MutedText}" />
+
+                            <!-- Рейтинг + Заказы в одной строке -->
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,6,0,0">
+                                <Label Text="{Binding Rating, StringFormat='★ {0:F2}'}"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding OrdersCount, StringFormat='Заказов: {0}'}"
+                                       Style="{StaticResource MutedText}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+                            </Grid>
+
+                            <!-- Email отдельной строкой, чтобы не налезал -->
+                            <Label Text="{Binding Email}"
+                                   Style="{StaticResource MutedText}"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="1" />
+
+                            <!-- Телефон отдельной строкой -->
+                            <Label Text="{Binding Phone}"
+                                   Style="{StaticResource MutedText}"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="1" />
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Вход">
+
+    <Grid Padding="16" RowDefinitions="Auto,*" RowSpacing="12">
+
+        <Label Text="Вход в систему" Style="{StaticResource H1}" />
+
+        <ScrollView Grid.Row="1">
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Email" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Style="{StaticResource Input}" />
+
+                    <Label Text="Пароль" Style="{StaticResource MutedText}" />
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Style="{StaticResource Input}" />
+
+                    <Button Text="Войти"
+                            Style="{StaticResource PrimaryButton}"
+                            Clicked="OnLoginClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ServicesBoard.Pages.MyAdsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBg}"
+    Title="Мои объявления">
+
+    <Grid Padding="12" RowDefinitions="Auto,*" RowSpacing="10">
+
+        <Label Grid.Row="0"
+               Text="Мои объявления"
+               Style="{StaticResource H1}" />
+
+        <CollectionView Grid.Row="1"
+                        x:Name="MyAdsCollectionView"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,10">
+                        <Grid ColumnDefinitions="80,*" ColumnSpacing="12">
+
+                            <!-- Фото фикс -->
+                            <Border BackgroundColor="{StaticResource BrandOrangeSoft}"
+                                    Stroke="{StaticResource BorderSoft}"
+                                    StrokeThickness="1"
+                                    HeightRequest="80"
+                                    WidthRequest="80">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="16"/>
+                                </Border.StrokeShape>
+                                <Image Source="{Binding PhotoPath}" Aspect="AspectFill"/>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" LineBreakMode="TailTruncation"/>
+                                <Label Text="{Binding Category}" Style="{StaticResource MutedText}"/>
+                                <Label Text="{Binding Area, StringFormat='Район: {0}'}" Style="{StaticResource MutedText}"/>
+
+                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8" Margin="0,6,0,0">
+                                    <Label Text="{Binding Price, StringFormat='{0:F0} ₽'}" FontAttributes="Bold"/>
+                                    <Label Grid.Column="1" Text="{Binding Status}" Style="{StaticResource MutedText}" VerticalOptions="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding ViewsCount, StringFormat='👁 {0}'}" Style="{StaticResource MutedText}" VerticalOptions="Center"/>
+                                </Grid>
+
+                                <Label Text="{Binding Description}"
+                                       Style="{StaticResource BodyText}"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2"/>
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
